@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>Post Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+    
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 800;
+    }
+    
+    .datawrapper {
+        background-color: antiquewhite;
+        margin: 10px;
+        border-radius: 10px;
+    }
+    
+    span,
+    p {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 800;
+    }
+    
+    p {
+        color: #1b4a98;
+    }
+</style>
+
+<body>
+
+    <!--post data  start -->
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-12 text-center ">
+                <div class="datawrapper">
+                    <h1>Post Data </h1>
+                    <button id="getPost" class="btn btn-primary">Get Post</button>
+                    <div id="displayrecord"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- post data  end-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js " integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF " crossorigin="anonymous "></script>
+
+
+    <script>
+        var btn = document.getElementById("getPost");
+        var url = "https://jsonplaceholder.typicode.com/posts";
+        btn.addEventListener("click", function() {
+            fetch(url)
+                .then((response) => response.json())
+                .then((myJson) => {
+                    console.log(myJson);
+                    myJson.map((item) => {
+                        var result = document.getElementById("displayrecord");
+                        var heading = document.createElement("h1");
+                        var span = document.createElement("span");
+                        var para = document.createElement("p");
+                        result.appendChild(span);
+                        result.appendChild(heading);
+                        result.appendChild(para);
+                        span.innerHTML = item.id;
+                        heading.innerHTML = item.title;
+                        para.innerHTML = item.body;
+                    });
+                });
+        });
+    </script>
+</body>
+
+</html>
